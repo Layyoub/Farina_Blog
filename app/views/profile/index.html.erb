@@ -1,0 +1,19 @@
+<div class="max-w-md mx-auto mt-20">
+  <div class="bg-black rounded-lg shadow-lg text-white p-6">
+    <h1 class="text-3xl font-bold text-yellow-400 mb-4">Profile Information</h1>
+          <%= image_tag "prof.jpg", class: "w-32 h-32 rounded-full object-cover border-4 border-yellow-400 mb-6" %>
+
+    <p class="text-lg text-gray-300 mb-6">
+      Username: <%= link_to "#{current_model.username}", profile_path, class: "text-yellow-400 hover:text-yellow-500 font-bold" %>
+    </p>
+    <p class="text-lg text-gray-300 mb-6">
+      Last Name: <%= link_to "#{current_model.last_name}", profile_path, class: "text-yellow-400 hover:text-yellow-500 font-bold" %>
+    </p>
+    <p class="text-lg text-gray-300 mb-6">
+      First Name: <%= link_to "#{current_model.first_name}", profile_path, class: "text-yellow-400 hover:text-yellow-500 font-bold" %>
+    </p>
+    <p class="text-lg text-gray-300 mb-6">
+      Email: <%= link_to "#{current_model.email}", profile_path, class: "text-yellow-400 hover:text-yellow-500 font-bold" %>
+    </p>
+  </div>
+</div>

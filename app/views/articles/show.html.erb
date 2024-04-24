@@ -1,0 +1,73 @@
+<div class="max-w-2xl mx-auto p-6 bg-black rounded-lg shadow-lg text-white">
+  <h1 class="text-3xl font-bold text-yellow-400 mb-4"><%= @article.title %></h1>
+
+  <p class="text-lg text-gray-300 mb-6"><%= @article.body %></p>
+
+  <div class="flex space-x-4 mb-8">
+    <%= link_to "Wingardyum Levi'oosaa", edit_article_path(@article), data: { turbo_frame: "edit_article" }, class: "mt-4 bg-yellow-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded" %>
+    <%= link_to "AVADA KADABRA!", article_path(@article), method: :delete, data: { turbo_confirm: "Are you sure?", turbo_frame: "articles" }, class: "mt-4 bg-red-500 hover:bg-black-700 text-black font-bold py-2 px-4 rounded", id: "avadaKadabraButton" %>
+
+  </div>
+
+  <h2 class="text-2xl font-bold text-yellow-400 mb-4">Comments</h2>
+  <%= render @article.comments %>
+
+  <h2 class="text-2xl font-bold text-yellow-400 mb-4">Add a comment:</h2>
+  <div class="bg-black rounded-lg p-4 mb-4">
+    <%= render 'comments/form' %>
+  </div>
+
+  <%= image_tag @article.image, class: "rounded-full mx-auto mt-8 h-36 w-36" if @article.image.attached? %>
+
+       <%= link_to "BACK",articles_path ,class: "mt-4 bg-yellow-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded" %>
+
+
+  <style>
+    .rounded-lg {
+      border-radius: 12px;
+    }
+
+    .shadow-lg {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .bg-black {
+      background-color: #000;
+    }
+
+    .text-white {
+      color: #fff;
+    }
+
+    .text-yellow-400 {
+      color: #ffd700;
+    }
+
+    .text-gray-300 {
+      color: #d1d5db;
+    }
+
+    .bg-yellow-500 {
+      background-color: #ffed4a;
+    }
+
+    .hover\:bg-yellow-700:hover {
+      background-color: #e4d419;
+    }
+
+    .bg-red-500 {
+      background-color: #f87171;
+    }
+
+    .hover\:bg-red-700:hover {
+      background-color: #ef4444;
+    }
+
+    .rounded-full {
+      border-radius: 9999px;
+    }
+  
+  </style>
+
+ 
+</div>

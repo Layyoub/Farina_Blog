@@ -1,0 +1,43 @@
+<div class="flex flex-col items-center justify-center h-screen">
+  <h1 class="font-comic-sans text-yellow-400 py-4 text-4xl font-bold">Welcome to Ollivanders!</h1>
+
+  <p class="text-yellow-400"><%= Article.public_count %> magical articles awaiting discovery</p>
+
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-4 gap-8 mt-8">
+      <% @articles.each do |article| %>
+        <% unless article.archived? %>
+          <div class="bg-black rounded-lg shadow-lg overflow-hidden border border-yellow-500 text-white transform hover:scale-105 transition duration-300 ease-in-out">
+            <% if article.image.attached? %>
+              <div class="h-48 flex justify-center items-center">
+                <%= link_to image_tag(article.image, class: "object-cover h-full w-full"), article %>
+              </div>
+            <% end %>
+            <div class="p-4">
+              <%= link_to article.title, article, class: "text-white hover:text-blue-700 font-bold text-lg" %>
+              <p class="text-gray-300 mt-2 leading-relaxed overflow-hidden">
+                <%= truncate(article.body, length: 150, separator: ' ') %>
+                <% if article.body.length > 150 %>
+                  <span class="cursor-pointer text-blue-500 hover:text-yellow-700" onclick="toggleShow<%= article.id %>()">Show more</span>
+                  <span id="articleBody<%= article.id %>" class="hidden"><%= article.body %></span>
+                <% end %>
+              </p>
+              <div class="mt-2 border-t border-yellow-500 pt-2">
+                <h2 class="text-lg font-semibold text-yellow-400">Enchanting Comments:</h2>
+                <ul class="list-disc pl-4 mt-2">
+                  <% article.comments.each do |comment| %>
+                    <% unless comment.archived? %>
+                      <li class="text-white"><%= comment.commenter %>: <%= comment.body %></li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= link_to "Craft a New Wand", new_article_path, class: "mt-4 bg-yellow-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+</div>
